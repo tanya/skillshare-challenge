@@ -1,13 +1,20 @@
 <html>
   {% block content %}
   <head>
-    <p>Hello there!</p>
+    <link rel="stylesheet" href="css/styles.css">
+    <center><font face="helvetica" size="5">Hello there!</font></center>
   </head>
   <body>
     {% if pics %}
-      {% for p in pics %}
-      <p><img src="{{p}}"></img></p>
+    <div class="row">
+      {% for col in pic_cols %}
+      <div class="col">
+        {% for pic in col %}
+          <p><img src="{{p}}"></img></p>
+        {% endfor %}
+      </div>
       {% endfor %}
+    </div>
     {% endif %}
   </body>
   {% endblock %}

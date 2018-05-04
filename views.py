@@ -22,11 +22,13 @@ app = Flask(__name__)
 @app.route('/', methods=['GET','POST'])
 def home():
     if request.method == 'GET':
-        posts = client.tagged('landscape')
+        posts = client.tagged('vaporwave')
         photos = set()
         for post in posts:
             if 'photos' not in post.keys(): continue
             for i in post['photos']:
                 photos.add((i['original_size']['url']))
-        return render_template('index.html', pics=list(photos))
+        pics = list(photos)
+        pic_cols = [pics[i::4] for i in range(4)]
+        return render_template('index.html', pics=list(photos), col_len=len(list(photos))/4, pic_cols=pic_cols)
     #if request.method == 'POST':
