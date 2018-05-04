@@ -1,0 +1,14 @@
+<html>
+  {% block content %}
+  <head>
+    <p>Hello there!</p>
+  </head>
+  <body>
+    {% if pics %}
+      {% for p in pics %}
+      <p><img src="{{p}}"></img></p>
+      {% endfor %}
+    {% endif %}
+  </body>
+  {% endblock %}
+</html>
