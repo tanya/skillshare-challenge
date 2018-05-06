@@ -38,10 +38,5 @@ def home(current):
     """
     current = int(current)
     maxm = len(pic_pages) - 1
-
-    if request.method == 'GET':
-        return render_template('index.html', current=current, pics=pic_pages[current], maxm=maxm)
-
-    if request.method == 'POST':
-        #current is modified in frontend
-        return render_template('index.html', current=current, pics=pic_pages[current], maxm=maxm)
+    #current is modified in frontend, for post
+    return render_template('index.html', current=current, pics=pic_pages[current], maxm=maxm)
