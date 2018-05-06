@@ -9,6 +9,15 @@
       <p><center><img width=75% src="{{p}}"></img></center></p>
       {% endfor %}
     {% endif %}
+      {% if current > 0 %}
+    <form action={{ url_for('home', current=current) }} method='POST'>
+      <input type="submit" name="submit" value="Previous Page">
+    </form>
+      {% endif %}
+      {% if current < maxm %}
+    <form action={{ url_for('home', current=current) }} method='POST'>
+      <input type="submit" name="submit" value="Next Page">
+      {% endif %}
   </body>
   {% endblock %}
 </html>
