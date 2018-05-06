@@ -4,18 +4,22 @@
     <p>Hello there!</p>
   </head>
   <body>
+    <form action={{ url_for('index') }} method='POST'>
+      Search for images: <input style='text' name='query'></input>
+      <input type="submit" name="submit" value="search">
+    </form>
     {% if pics %}
       {% for p in pics %}
       <p><center><img width=75% src="{{p}}"></img></center></p>
       {% endfor %}
     {% endif %}
       {% if current > 0 %}
-    <form action={{ url_for('home', current=current) }} method='POST'>
+    <form action={{ url_for('home', current=current - 1) }} method='POST'>
       <input type="submit" name="submit" value="Previous Page">
     </form>
       {% endif %}
       {% if current < maxm %}
-    <form action={{ url_for('home', current=current) }} method='POST'>
+    <form action={{ url_for('home', current=current + 1) }} method='POST'>
       <input type="submit" name="submit" value="Next Page">
       {% endif %}
   </body>
