@@ -1,12 +1,20 @@
 <html>
   {% block content %}
   <head>
-    <p>Hello there!</p>
+    <link rel="stylesheet" href="main.css">
+    <style>
+			input[type="submit"]{
+				background-color: #555;
+				color: #fff;
+				border-radius: 10px;
+			}
+</style>
   </head>
-  <body>
+  <div class="body">
+  <body background="https://cdn.wallpapersafari.com/1/16/Omc6tT.jpg" size=100% link="#fff" vlink="#d1baf2">
     <form action={{ url_for('index') }} method='POST'>
-      Search for images: <input style='text' name='query'></input>
-      <input type="submit" name="submit" value="search">
+      <p align="right"><font color=#fff face="helvetica">Search for images: <input style='text; font-size:15px' name='query'></input>
+      <input type="submit" name="submit" value="search" style="font-size:15px"></p>
     </form>
     {% if pics %}
       {% for p in pics %}
@@ -15,13 +23,19 @@
     {% endif %}
       {% if current > 0 %}
     <form action={{ url_for('home', current=current - 1) }} method='POST'>
-      <input type="submit" name="submit" value="Previous Page">
+      <center><input type="submit" name="submit" value="Previous Page" style="font-size:15px"></center>
     </form>
       {% endif %}
       {% if current < maxm %}
     <form action={{ url_for('home', current=current + 1) }} method='POST'>
-      <input type="submit" name="submit" value="Next Page">
+      <center><input type="submit" name="submit" value="Next Page" style="font-size:15px"></center>
       {% endif %}
+      <center>
+      {% for i in range(1, maxm+2) %}
+        <font face="helvetica" size=5><a href="{{ url_for('home', current=i-1) }}">{{i}}</a></font>
+      {% endfor %}
+      </center>
+  </div>
   </body>
   {% endblock %}
 </html>
