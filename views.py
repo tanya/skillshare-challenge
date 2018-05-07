@@ -14,21 +14,34 @@ def index(keyword=''):
         - Divides API response into 10 responses per page
         - Loads first page
     """
-    if keyword == '': keyword = 'landscape'
-    posts = client.tagged(keyword)
-    photos, ind = [], 0
-    for post in posts:
-        if 'photos' not in post.keys(): continue
-        for i in post['photos']:
-            photos.append((i['original_size']['url']))
 
-    #10 results per page
-    for i in range(len(photos)):
-        pic_pages[ind].append(photos[i])
-        if i % 10 == 0 and i != 0:
-            ind += 1
-            pic_pages.append([])
-    print (len(pic_pages))
+    global pic_pages
+
+    def get_imgs(keyword):
+        if keyword == '': keyword = 'landscape'
+        pic_pages = [[]]
+        posts = client.tagged(keyword)
+        photos, ind = [], 0
+        for post in posts:
+            if 'photos' not in post.keys(): continue
+            for i in post['photos']:
+                photos.append((i['original_size']['url']))
+
+        #10 results per page
+        for i in range(len(photos)):
+            pic_pages[ind].append(photos[i])
+            if i % 10 == 0 and i != 0:
+                ind += 1
+                pic_pages.append([])
+        print (len(pic_pages))
+        return pic_pages
+
+    if request.method == 'POST':
+        keyword = request.form.get('query')
+        pic_pages = get_imgs(keyword)
+        return redirect(url_for('home', current=0))
+
+    pic_pages = get_imgs('landscape')
     return redirect(url_for('home', current=0))
 
 @app.route('/page=<current>', methods=['GET','POST'])
