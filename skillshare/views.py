@@ -5,8 +5,24 @@ from werkzeug import import_string, cached_property
 # Authenticate via API Key
 client = pytumblr.TumblrRestClient('Bx7WX9YDTj9jn5ttururjm0a2OCIcOxc92u3fEHQho9NI6sKAE')
 client.info()
+#app = Flask(__name__)
 pic_pages = [[]]
 
+"""
+class LazyView(object):
+    def __init__(self, import_name):
+        self.__name__ = import_name
+        self.import_name = import_name
+
+    @cached_property
+    def view(self):
+        return import_string(self.import_name)
+
+    def __call__(self, *args, **kwargs):
+        return self.view(*args, **kwargs)
+"""
+
+#@app.route('/', methods=['GET', 'POST'])
 def index(keyword=''):
     """
         - Gets images tagged with keyword (default: 'landscape') from Tumblr
@@ -43,6 +59,7 @@ def index(keyword=''):
     pic_pages = get_imgs('landscape')
     return redirect(url_for('home', current=0))
 
+#@app.route('/page=<current>', methods=['GET','POST'])
 def home(current):
     """
         - Handles subsequent requests
@@ -50,5 +67,5 @@ def home(current):
     current = int(current)
     maxm = len(pic_pages) - 1
     #current is modified in frontend, for post
-    return render_template('templates/index.html', current=current, pics=pic_pages[current], maxm=maxm)
+    return render_template('index.html', current=current, pics=pic_pages[current], maxm=maxm)
 
