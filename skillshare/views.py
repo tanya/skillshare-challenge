@@ -8,21 +8,6 @@ client.info()
 #app = Flask(__name__)
 pic_pages = [[]]
 
-"""
-class LazyView(object):
-    def __init__(self, import_name):
-        self.__name__ = import_name
-        self.import_name = import_name
-
-    @cached_property
-    def view(self):
-        return import_string(self.import_name)
-
-    def __call__(self, *args, **kwargs):
-        return self.view(*args, **kwargs)
-"""
-
-#@app.route('/', methods=['GET', 'POST'])
 def index(keyword=''):
     """
         - Gets images tagged with keyword (default: 'landscape') from Tumblr
@@ -59,7 +44,6 @@ def index(keyword=''):
     pic_pages = get_imgs('landscape')
     return redirect(url_for('home', current=0))
 
-#@app.route('/page=<current>', methods=['GET','POST'])
 def home(current):
     """
         - Handles subsequent requests

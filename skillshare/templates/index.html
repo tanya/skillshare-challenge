@@ -8,17 +8,18 @@
 				color: #fff;
 				border-radius: 10px;
 			}
-</style>
+    </style>
+  <p><center><font size=7 face="helvetica" color="#fff">Searchr</font></center></p>
   </head>
   <div class="body">
   <body background="https://cdn.wallpapersafari.com/1/16/Omc6tT.jpg" size=100% link="#fff" vlink="#d1baf2">
     <form action={{ url_for('index') }} method='POST'>
-      <p align="right"><font color=#fff face="helvetica">Search for images: <input style='text; font-size:15px' name='query'></input>
-      <input type="submit" name="submit" value="search" style="font-size:15px"></p>
+      <center><font color=#fff face="helvetica">Search for images: <input style='text; font-size:15px' name='query'></input>
+          <input type="submit" name="submit" value="search" style="font-size:15px"></center>
     </form>
     {% if pics %}
       {% for p in pics %}
-      <p><center><img width=75% src="{{p}}"></img></center></p>
+      <p><center><img width=50% src="{{p}}"></img></center></p>
       {% endfor %}
     {% endif %}
       {% if current > 0 %}
