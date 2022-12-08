@@ -4,7 +4,7 @@ Babel==0.9.4
 backports.ssl-match-hostname==3.4.0.2
 boto==2.48.0
 botocore==1.8.13
-certifi==2018.4.16
+certifi==2022.12.7
 chardet==3.0.4
 click==6.7
 cloud-init==0.7.6
